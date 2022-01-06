@@ -22,8 +22,19 @@ Implementación de patrón de componentes _(Component Compound)_ en react, utili
 </ProductCard>
 ```
 
+### Component Extend Styles Pattern
+
+Se agrego el patrón de estilos extensible al Compound Component Pattern, para asi poder personalizar los estilos de todo el componente
+
+```js
+// Ejemplo
+<ProductCard className="my-custom-class">
+  <ProductImage style={{ padding: '10px', borderRadius: 20 }} />
+  <ProductTitle title="Hola Mundo" />
+</ProductCard>
+```
+
 **TODO's**
 
 - recibir props adicionales de React
-- props de estilo y separación de estilos
 - control props para sus componentes interiores
