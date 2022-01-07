@@ -34,7 +34,18 @@ Se agrego el patrón de estilos extensible al Compound Component Pattern, para a
 </ProductCard>
 ```
 
-**TODO's**
+### Component Control Props Pattern
 
-- recibir props adicionales de React
-- control props para sus componentes interiores
+Se agrego el patrón de control de props al Compound Component Pattern, para asi hacer que el componente se comporte de manera controlada o no controlada, se le puede pasar un callback a la función onchange y un value.
+
+```js
+// Ejemplo
+<ProductCard
+  className="my-custom-class"
+  value={count}
+  onChange={(count: number, product: Product) => changeCount(count, product)}
+>
+  <ProductImage style={{ padding: '10px', borderRadius: 20 }} />
+  <ProductTitle title="Hola Mundo" />
+</ProductCard>
+```
