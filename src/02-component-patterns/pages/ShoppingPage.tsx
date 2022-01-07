@@ -5,52 +5,58 @@ import {
   ProductTitle,
 } from '../components/ProductCard';
 
-import useShoppingCart from '../hooks/useShoppingCart';
-import { Product } from '../components/ProductCard/interfaces';
-
 import products from '../data/products';
 
 import styles from '../styles/styles.module.css';
 import '../styles/custom-styles.css';
 
-export const ShoppingPage = () => {
-  const { shoppingCart, handleChangeShoppingCart } = useShoppingCart();
+const product = products[0];
 
+export const ShoppingPage = () => {
   return (
     <div>
       <h1>Shopping Store</h1>
       <hr />
 
       <div className={styles.productsContainer}>
-        {products.map((product: Product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            className="bg-dark"
-            onChange={handleChangeShoppingCart}
-            value={shoppingCart[product.id]?.count ?? 0}
-          >
-            <ProductImage className="custom-image" />
-            <ProductTitle className="text-white text-bold" />
-            <ProductButtons className="custom-buttons" />
-          </ProductCard>
-        ))}
-      </div>
+        <ProductCard
+          product={product}
+          className="bg-dark"
+          initialValues={{
+            count: 4,
+            maxCount: 10,
+          }}
+        >
+          {({ count, maxCount, increaseBy, reset }) => (
+            <>
+              <ProductImage className="custom-image" />
+              <ProductTitle className="text-white text-bold" />
+              <ProductButtons className="custom-buttons" />
 
-      <div className="shopping-cart">
-        {Object.keys(shoppingCart).map((key: string) => (
-          <ProductCard
-            key={key}
-            product={shoppingCart[key]}
-            className="bg-dark"
-            style={{ width: '100px' }}
-            value={shoppingCart[key].count}
-            onChange={handleChangeShoppingCart}
-          >
-            <ProductImage className="custom-image" />
-            <ProductButtons className="custom-buttons" />
-          </ProductCard>
-        ))}
+              <div className="optional-custom-buttons">
+                <button onClick={reset}>Reset</button>
+                <button
+                  onClick={() => increaseBy(-2)}
+                  className={`${count === 0 && styles.disabled}`}
+                >
+                  - 2
+                </button>
+                <button
+                  onClick={() => increaseBy(2)}
+                  className={`${
+                    !!maxCount && count >= maxCount - 1 && styles.disabled
+                  }`}
+                >
+                  + 2
+                </button>
+              </div>
+
+              <span className="custom-count">
+                Count: {count} - {maxCount ?? <>&infin;</>}
+              </span>
+            </>
+          )}
+        </ProductCard>
       </div>
     </div>
   );

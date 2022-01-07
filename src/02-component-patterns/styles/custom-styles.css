@@ -27,3 +27,42 @@
   right: 10px;
   top: 0;
 }
+
+.optional-custom-buttons {
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+}
+
+.optional-custom-buttons button {
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+  cursor: pointer;
+  flex-grow: 1;
+  padding: 5px;
+}
+
+.optional-custom-buttons button:first-child {
+  border-radius: 5px 0 0 5px;
+}
+
+.optional-custom-buttons button:nth-child(2) {
+  border-left: 0;
+  border-right: 0;
+}
+
+.optional-custom-buttons button:last-child {
+  border-radius: 0 5px 5px 0;
+}
+
+.optional-custom-buttons button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.custom-count {
+  color: white;
+  display: block;
+  font-weight: bold;
+  text-align: center;
+}
